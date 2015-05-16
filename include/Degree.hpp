@@ -1,5 +1,4 @@
 #pragma once
-#include"Radian.hpp"
 #include <cmath>
 #define _USE_MATH_DEFINES
 
@@ -33,4 +32,7 @@ bool operator<(const Degree& lhs, const Degree& rhs);
 bool operator<=(const Degree& lhs, const Degree& rhs);
 bool operator>=(const Degree& lhs, const Degree& rhs);
 
+double sin(const Degree& degree);
+double cos(const Degree& degree);
+double tan(const Degree& degree);
 }

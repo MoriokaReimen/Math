@@ -82,6 +82,16 @@ bool operator>=(const Degree& lhs, const Degree& rhs)
 
 double sin(const Degree& degree)
 {
-	return sin(degree.toRadian());
+	return std::sin(degree.toRadian());
+}
+
+double cos(const Degree& degree)
+{
+	return std::cos(degree.toRadian());
+}
+
+double tan(const Degree& degree)
+{
+	return std::tan(degree.toRadian());
 }
 }
