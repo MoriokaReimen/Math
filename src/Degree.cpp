@@ -9,13 +9,6 @@ Degree::Degree(const double& num)
 	return;
 }
 
-/*
-operator Degree::double()
-{
-	return this->val;
-}
-*/
-
 Degree& Degree::operator+=(const Degree& lhs)
 {
 	this->val += lhs.val;

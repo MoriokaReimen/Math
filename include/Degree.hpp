@@ -1,4 +1,7 @@
 #pragma once
+#include"Radian.hpp"
+#include <cmath>
+#define _USE_MATH_DEFINES
 
 namespace Math
 {
@@ -10,7 +13,10 @@ struct Degree
 	Degree(const double& num);
   Degree& operator+=(const Degree& lhs);
   Degree& operator-=(const Degree& lhs);
-	//operator double();
+	operator double()
+	{
+		return double(this->val);
+	}
 };
 
 Degree scale(const double& num, const Degree& degree);

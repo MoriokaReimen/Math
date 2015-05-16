@@ -13,4 +13,5 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 
 add_library(3dmath STATIC
 src/Degree.cpp include/Degree.hpp 
+src/Radian.cpp include/Radian.hpp 
 )
