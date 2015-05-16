@@ -9,6 +9,17 @@ Degree::Degree(const double& num)
 	return;
 }
 
+double Degree::toRadian() const
+{
+	return this->val /180.0 * M_PI;
+}
+
+void Degree::fromRadian(const double& radian)
+{
+	this->val = radian / M_PI * 180.0;
+	return;
+}
+
 Degree& Degree::operator+=(const Degree& lhs)
 {
 	this->val += lhs.val;
@@ -69,4 +80,8 @@ bool operator>=(const Degree& lhs, const Degree& rhs)
 	return bool{lhs.val >= rhs.val};
 }
 
+double sin(const Degree& degree)
+{
+	return sin(degree.toRadian());
+}
 }

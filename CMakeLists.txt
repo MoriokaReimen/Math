@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8)
-project(3dMath)
+project(Math)
 add_subdirectory(lib)
 add_subdirectory(src)
 add_subdirectory(bin)
@@ -13,5 +13,4 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 
 add_library(3dmath STATIC
 src/Degree.cpp include/Degree.hpp 
-src/Radian.cpp include/Radian.hpp 
 )
