@@ -26,4 +26,4 @@ Simple and practical math library for 3d mathematics
 
 ## Author
 
-[tcnksm](https://github.com/tcnksm)
+[MoriokaReimen](menschenjager.mark.neun@gmail.com)
