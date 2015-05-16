@@ -1,9 +1,29 @@
-= Library Math =
+Math
+====
 
-== Abstruct ==
+Simple and practical math library for 3d mathematics
 
-Simple and practical 3d mathematics library
+## Description
+* Degree manipulation
+* Vector manipulation
+* Quaternion manipulation
 
-== contents ==
+## Demo
 
-* angle in degree manipulation support
+## VS.
+
+## Requirement
+
+## Usage
+
+## Install
+
+## Contribution
+
+## Licence
+
+[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+
+## Author
+
+[tcnksm](https://github.com/tcnksm)
