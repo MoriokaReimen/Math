@@ -11,6 +11,15 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 
-add_library(3dmath STATIC
+# math Library
+add_library(math STATIC
 src/Degree.cpp include/Degree.hpp 
 )
+
+# test codes
+enable_testing()
+add_executable(math_test
+    test/TestDegree.cpp
+)
+target_link_libraries(math_test math gtest gtest_main pthread)
+add_test(math_test ./bin/math_test)

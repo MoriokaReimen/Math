@@ -1,0 +1,31 @@
+Start testing: May 17 09:09 JST
+----------------------------------------------------------
+1/1 Testing: math_test
+1/1 Test: math_test
+Command: "/home/kei/src/Math/bin/math_test"
+Directory: /home/kei/src/Math
+"math_test" start time: May 17 09:09 JST
+Output:
+----------------------------------------------------------
+Running main() from gtest_main.cc
+[==========] Running 2 tests from 1 test case.
+[----------] Global test environment set-up.
+[----------] 2 tests from DegreeTest
+[ RUN      ] DegreeTest.construct
+[       OK ] DegreeTest.construct (0 ms)
+[ RUN      ] DegreeTest.assignment_operator
+[       OK ] DegreeTest.assignment_operator (0 ms)
+[----------] 2 tests from DegreeTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 2 tests from 1 test case ran. (1 ms total)
+[  PASSED  ] 2 tests.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"math_test" end time: May 17 09:09 JST
+"math_test" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: May 17 09:09 JST
