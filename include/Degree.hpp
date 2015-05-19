@@ -21,7 +21,6 @@ public:
 	}
 };
 
-Degree scale(const double& num, const Degree& degree);
 Degree operator+(const Degree& lhs, const Degree& rhs);
 Degree operator-(const Degree& lhs, const Degree& rhs);
 
@@ -32,6 +31,7 @@ bool operator<(const Degree& lhs, const Degree& rhs);
 bool operator<=(const Degree& lhs, const Degree& rhs);
 bool operator>=(const Degree& lhs, const Degree& rhs);
 
+Degree scale(const double& num, const Degree& degree);
 double sin(const Degree& degree);
 double cos(const Degree& degree);
 double tan(const Degree& degree);

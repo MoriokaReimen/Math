@@ -32,11 +32,6 @@ Degree& Degree::operator-=(const Degree& lhs)
 	return *this;
 }
 
-Degree scale(const double& num, const Degree& degree)
-{
-	Degree buf(num * degree.val);
-	return buf;
-}
 
 Degree operator+(const Degree& lhs, const Degree& rhs)
 {
@@ -78,6 +73,12 @@ bool operator<=(const Degree& lhs, const Degree& rhs)
 bool operator>=(const Degree& lhs, const Degree& rhs)
 {
 	return bool{lhs.val >= rhs.val};
+}
+
+Degree scale(const double& num, const Degree& degree)
+{
+	Degree buf(num * degree.val);
+	return buf;
 }
 
 double sin(const Degree& degree)
