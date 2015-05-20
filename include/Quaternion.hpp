@@ -28,4 +28,7 @@ namespace Math {
   Quaternion operator+(const Quaternion& lhs, const Quaternion& rhs);
   Quaternion operator-(const Quaternion& lhs, const Quaternion& rhs);
   Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs);
+
+  bool operator==(const Quaternion& lhs, const Quaternion& rhs);
+  bool operator!=(const Quaternion& lhs, const Quaternion& rhs);
 };

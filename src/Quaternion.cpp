@@ -148,6 +148,25 @@ Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs)
 
   return buf;
 }
+
+bool operator==(const Quaternion& lhs, const Quaternion& rhs)
+{
+    if(std::islessgreater(lhs.w, rhs.w)) return false;
+    if(std::islessgreater(lhs.x, rhs.x)) return false;
+    if(std::islessgreater(lhs.y, rhs.y)) return false;
+    if(std::islessgreater(lhs.z, rhs.z)) return false;
+    return true;
+}
+
+bool operator!=(const Quaternion& lhs, const Quaternion& rhs)
+{
+    if(std::islessgreater(lhs.w, rhs.w)) return true;
+    if(std::islessgreater(lhs.x, rhs.x)) return true;
+    if(std::islessgreater(lhs.y, rhs.y)) return true;
+    if(std::islessgreater(lhs.z, rhs.z)) return true;
+    return false;
+}
+
 /* implement someday
 void toMat(GLfloat* mat)
 {
