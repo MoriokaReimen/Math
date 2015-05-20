@@ -31,7 +31,7 @@ bool operator<(const Degree& lhs, const Degree& rhs);
 bool operator<=(const Degree& lhs, const Degree& rhs);
 bool operator>=(const Degree& lhs, const Degree& rhs);
 
-Degree scale(const double& num, const Degree& degree);
+Degree scale(const Degree& degree, const double& num);
 double sin(const Degree& degree);
 double cos(const Degree& degree);
 double tan(const Degree& degree);

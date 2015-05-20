@@ -75,7 +75,7 @@ bool operator>=(const Degree& lhs, const Degree& rhs)
 	return bool{lhs.val >= rhs.val};
 }
 
-Degree scale(const double& num, const Degree& degree)
+Degree scale(const Degree& degree, const double& num)
 {
 	Degree buf(num * degree.val);
 	return buf;
