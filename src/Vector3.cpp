@@ -116,4 +116,20 @@ namespace Math {
     );
     return buf;
   }
+
+  Degree getAngle(const Vector3& lhs, const Vector3& rhs)
+  {
+    Degree angle;
+    auto c = cross(lhs, rhs);
+    auto d = dot(lhs, rhs);
+    angle.fromRadian(std::atan(c.getNorm() / d));
+    return angle;
+  }
+
+  Vector3 getNormal(const Vector3& lhs, const Vector3& rhs)
+  {
+    Vector3 normal = cross(lhs, rhs);
+    normal = normalize(normal);
+    return normal;
+  }
 };

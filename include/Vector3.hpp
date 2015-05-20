@@ -1,5 +1,6 @@
 #pragma once
 #include <cmath>
+#include "Degree.hpp"
 
 namespace Math {
   class Vector3 {
@@ -24,8 +25,9 @@ namespace Math {
   bool operator==(const Vector3& lhs, const Vector3& rhs);
   bool operator!=(const Vector3& lhs, const Vector3& rhs);
 
-  double length(const Vector3& lhs);
   Vector3 normalize(const Vector3& lhs);
   double dot(const Vector3& lhs, const Vector3& rhs);
   Vector3 cross(const Vector3& lhs, const Vector3& rhs);
+  Degree getAngle(const Vector3& lhs, const Vector3& rhs);
+  Vector3 getNormal(const Vector3& lhs, const Vector3& rhs);
 };

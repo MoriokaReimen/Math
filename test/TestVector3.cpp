@@ -98,6 +98,10 @@ TEST(Vector3Test, function)
   Vector3 vector3_c(1.0, 2.0, 3.0);
   Vector3 vector3_d(1.0, -2.0, 1.0);
 
+  Vector3 x(1.0, 0.0, 0.0);
+  Vector3 y(0.0, 1.0, 0.0);
+  Vector3 z(0.0, 0.0, 1.0);
+
 
   auto buff = normalize(vector3_b);
   Vector3 normal_b(
@@ -110,4 +114,10 @@ TEST(Vector3Test, function)
 
   buff = cross(vector3_a, vector3_c);
   EXPECT_EQ(true, vector3_d == buff);
+
+  auto ninety = getAngle(x, y);
+  EXPECT_DOUBLE_EQ(90.0, ninety.val);
+
+  auto normal = getNormal(x, y);
+  EXPECT_EQ(true, normal == z);
 }
