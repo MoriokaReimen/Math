@@ -13,7 +13,8 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 
 # math Library
 add_library(math STATIC
-src/Degree.cpp include/Degree.hpp 
+src/Degree.cpp include/Degree.hpp
+src/Vector3.cpp include/Vector3.hpp 
 )
 
 # test codes
