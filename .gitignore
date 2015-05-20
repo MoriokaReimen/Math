@@ -8,6 +8,6 @@ Makefile
 *.cmake
 CMakeCache.txt
 CMakeFiles
-bin/moon_simulator
+bin/math_test
 
 
