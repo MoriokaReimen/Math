@@ -23,96 +23,99 @@ TEST(QuaternionTest, construct)
 TEST(QuaternionTest, member_function)
 {
   Quaternion a(1.0, 1.0, 1.0, 1.0);
+
   Quaternion b(0.5, 0.5, 0.5, 0.5);
+  Degree angle(120.0);
+  Vector3 axis(1.0, 1.0, 1.0);
 
   EXPECT_DOUBLE_EQ(2.0, a.getNorm());
-  EXPECT_EQ(2.0, a.getNorm());
 
+  Quaternion c(angle, axis);
+  EXPECT_DOUBLE_EQ(0.5, c.w);
+  EXPECT_DOUBLE_EQ(0.5, c.x);
+  EXPECT_DOUBLE_EQ(0.5, c.y);
+  EXPECT_DOUBLE_EQ(0.5, c.z);
+
+  b.toAngleAxis(angle, axis);
+  axis = normalize(axis);
+  Vector3 axis_ans(1.0, 1.0, 1.0);
+  axis_ans = normalize(axis_ans);
+  EXPECT_DOUBLE_EQ(120.0, angle.val);
+  EXPECT_EQ(true, axis == axis_ans);
 }
 
 TEST(QuaternionTest, assignment_operator)
 {
-  Vector3 vector3_a;
-  Vector3 vector3_b(1.0, 1.0, 1.0);
-  Vector3 vector3_c(1.0, 2.0, 3.0);
+  Quaternion a(1.0, 1.0, 1.0, 1.0);
 
-  vector3_a += vector3_b;
-  EXPECT_DOUBLE_EQ(1.0, vector3_a.x);
-  EXPECT_DOUBLE_EQ(1.0, vector3_a.y);
-  EXPECT_DOUBLE_EQ(1.0, vector3_a.z);
+  Quaternion b(0.5, 0.5, 0.5, 0.5);
 
-  vector3_c -= vector3_a;
-  EXPECT_DOUBLE_EQ(0.0, vector3_c.x);
-  EXPECT_DOUBLE_EQ(1.0, vector3_c.y);
-  EXPECT_DOUBLE_EQ(2.0, vector3_c.z);
+  a += b;
+  EXPECT_DOUBLE_EQ(1.5, a.w);
+  EXPECT_DOUBLE_EQ(1.5, a.x);
+  EXPECT_DOUBLE_EQ(1.5, a.y);
+  EXPECT_DOUBLE_EQ(1.5, a.z);
 
-  vector3_a *= 4.0;
-  EXPECT_DOUBLE_EQ(4.0, vector3_a.x);
-  EXPECT_DOUBLE_EQ(4.0, vector3_a.y);
-  EXPECT_DOUBLE_EQ(4.0, vector3_a.z);
+  a -= b;
+  EXPECT_DOUBLE_EQ(1.0, a.w);
+  EXPECT_DOUBLE_EQ(1.0, a.x);
+  EXPECT_DOUBLE_EQ(1.0, a.y);
+  EXPECT_DOUBLE_EQ(1.0, a.z);
 
-  vector3_a /= 2.0;
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.x);
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.y);
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.z);
+  a *= b;
+  EXPECT_DOUBLE_EQ(-1.0, a.w);
+  EXPECT_DOUBLE_EQ(1.0, a.x);
+  EXPECT_DOUBLE_EQ(1.0, a.y);
+  EXPECT_DOUBLE_EQ(1.0, a.z);
 }
 
 TEST(QuaternionTest, add_sub_mult_operator)
 {
-  Vector3 vector3_a;
-  Vector3 vector3_b(1.0, 1.0, 1.0);
-  Vector3 vector3_c(1.0, 2.0, 3.0);
+  Quaternion a(1.0, 1.0, 1.0, 1.0);
+  Quaternion b(0.5, 0.5, 0.5, 0.5);
+  Quaternion buff;
 
-  vector3_a = vector3_b + vector3_c;
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.x);
-  EXPECT_DOUBLE_EQ(3.0, vector3_a.y);
-  EXPECT_DOUBLE_EQ(4.0, vector3_a.z);
+  buff = a + b;
+  EXPECT_DOUBLE_EQ(1.5, buff.w);
+  EXPECT_DOUBLE_EQ(1.5, buff.x);
+  EXPECT_DOUBLE_EQ(1.5, buff.y);
+  EXPECT_DOUBLE_EQ(1.5, buff.z);
 
-  vector3_a = vector3_c - vector3_b;
-  EXPECT_DOUBLE_EQ(0.0, vector3_a.x);
-  EXPECT_DOUBLE_EQ(1.0, vector3_a.y);
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.z);
+  buff = a - b;
+  EXPECT_DOUBLE_EQ(0.5, buff.w);
+  EXPECT_DOUBLE_EQ(0.5, buff.x);
+  EXPECT_DOUBLE_EQ(0.5, buff.y);
+  EXPECT_DOUBLE_EQ(0.5, buff.z);
 
-  vector3_a = vector3_b * 2;
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.x);
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.y);
-  EXPECT_DOUBLE_EQ(2.0, vector3_a.z);
-
-  vector3_a = vector3_b / 2;
-  EXPECT_DOUBLE_EQ(0.5, vector3_a.x);
-  EXPECT_DOUBLE_EQ(0.5, vector3_a.y);
-  EXPECT_DOUBLE_EQ(0.5, vector3_a.z);
+  a.set(1.0, 1.0, 1.0, 1.0);
+  b.set(0.5, 0.5, 0.5, 0.5);
+  buff = a * b;
+  EXPECT_DOUBLE_EQ(-1.0, buff.w);
+  EXPECT_DOUBLE_EQ(1.0, buff.x);
+  EXPECT_DOUBLE_EQ(1.0, buff.y);
+  EXPECT_DOUBLE_EQ(1.0, buff.z);
 }
 
 TEST(QuaternionTest, comp_operator)
 {
-  Vector3 vector3_a(1.0, 1.0, 1.0);
-  Vector3 vector3_b(1.0, 1.0, 1.0);
-  Vector3 vector3_c(1.0, 2.0, 3.0);
-  EXPECT_EQ(true, vector3_a == vector3_b);
-  EXPECT_EQ(false, vector3_a == vector3_c);
+  Quaternion a(1.0, 1.0, 1.0, 1.0);
+  Quaternion b(1.0, 1.0, 1.0, 1.0);
+  Quaternion c(0.5, 0.5, 0.5, 0.5);
 
-  EXPECT_EQ(true, vector3_a != vector3_c);
-  EXPECT_EQ(false, vector3_a != vector3_b);
+  EXPECT_EQ(true, a == b);
+  EXPECT_EQ(false, a == c);
+
+  EXPECT_EQ(true, a != c);
+  EXPECT_EQ(false, a != b);
 }
 
 TEST(QuaternionTest, function)
 {
-  Vector3 vector3_a(1.0, 1.0, 1.0);
-  Vector3 vector3_b(2.0, 2.0, 2.0);
-  Vector3 vector3_c(1.0, 2.0, 3.0);
-  Vector3 vector3_d(1.0, -2.0, 1.0);
+  Quaternion a(1.0, 1.0, 1.0, 1.0);
+  Quaternion b(2.0, 2.0, 2.0, 2.0);
 
+  auto buffa = scale(a, 2);
+  EXPECT_EQ(true, buffa == b);
 
-  auto buff = normalize(vector3_b);
-  Vector3 normal_b(
-    1.0 / std::sqrt(3),
-    1.0 / std::sqrt(3),
-    1.0 / std::sqrt(3));
-  EXPECT_EQ(true, normal_b == buff);
-
-  EXPECT_DOUBLE_EQ(6.0, dot(vector3_a, vector3_c));
-
-  buff = cross(vector3_a, vector3_c);
-  EXPECT_EQ(true, vector3_d == buff);
+  EXPECT_EQ(true, normalize(a) == normalize(b));
 }
