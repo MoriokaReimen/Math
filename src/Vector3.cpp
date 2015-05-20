@@ -7,6 +7,17 @@ namespace Math {
     return;
   }
 
+  double Vector3::getNorm() const
+  {
+    double len =
+    std::sqrt(
+      (this->x * this->x) +
+      (this->y * this->y) +
+      (this->z * this->z)
+    );
+    return len;
+  }
+
   Vector3 Vector3::operator+=(const Vector3& rhs)
   {
     this->x += rhs.x;
@@ -79,22 +90,11 @@ namespace Math {
     return false;
   }
 
-  double length(const Vector3& lhs)
-  {
-    double len =
-    std::sqrt(
-      (lhs.x * lhs.x) +
-      (lhs.y * lhs.y) +
-      (lhs.z * lhs.z)
-    );
-    return len;
-  }
-
   Vector3 normalize(const Vector3& lhs)
   {
     Vector3 buf;
-    if(length(lhs) != 0.0)
-      buf = lhs / length(lhs);
+    if(lhs.getNorm() != 0.0)
+      buf = lhs / lhs.getNorm();
     return buf;
   }
 

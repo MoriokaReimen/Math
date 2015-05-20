@@ -18,6 +18,13 @@ TEST(Vector3Test, construct)
   EXPECT_DOUBLE_EQ(3.0, vector3_b.z);
 }
 
+TEST(Vector3Test, member_function)
+{
+  Vector3 vector3_c(1.0, 2.0, 3.0);
+  EXPECT_DOUBLE_EQ(std::sqrt(14), vector3_c.getNorm());
+
+}
+
 TEST(Vector3Test, assignment_operator)
 {
   Vector3 vector3_a;
@@ -91,7 +98,6 @@ TEST(Vector3Test, function)
   Vector3 vector3_c(1.0, 2.0, 3.0);
   Vector3 vector3_d(1.0, -2.0, 1.0);
 
-  EXPECT_DOUBLE_EQ(std::sqrt(14), length(vector3_c));
 
   auto buff = normalize(vector3_b);
   Vector3 normal_b(
