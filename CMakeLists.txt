@@ -1,4 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
+
+
+
 project(Math)
 add_subdirectory(lib)
 add_subdirectory(src)
@@ -10,6 +13,30 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
+
+
+###############################################################################
+# include gtest
+include(ExternalProject)
+# Download and install GoogleTest
+ExternalProject_Add(
+    libgtest
+    URL https://googletest.googlecode.com/files/gtest-1.7.0.zip
+    PREFIX ${CMAKE_CURRENT_BINARY_DIR}/gtest
+    # Disable install step
+    INSTALL_COMMAND ""
+)
+## Create a libgtest target to be used as a dependency by test programs
+#add_library(libgtest IMPORTED STATIC GLOBAL)
+#add_dependencies(libgtest gtest)
+## Set gtest properties
+#ExternalProject_Get_Property(gtest source_dir binary_dir)
+#set_target_properties(libgtest PROPERTIES
+#    "IMPORTED_LOCATION" "bin/libgtest.a"
+#    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+#)
+###############################################################################
+
 
 # math Library
 add_library(math STATIC
