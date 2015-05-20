@@ -28,6 +28,11 @@ TEST(QuaternionTest, member_function)
   Degree angle(120.0);
   Vector3 axis(1.0, 1.0, 1.0);
 
+  Vector3 x(1.0, 0.0, 0.0);
+  Vector3 y(0.0, 1.0, 0.0);
+  Vector3 z(0.0, 0.0, 1.0);
+  Degree ninety(90.0);
+
   EXPECT_DOUBLE_EQ(2.0, a.getNorm());
 
   Quaternion c(angle, axis);
@@ -42,6 +47,11 @@ TEST(QuaternionTest, member_function)
   axis_ans = normalize(axis_ans);
   EXPECT_DOUBLE_EQ(120.0, angle.val);
   EXPECT_EQ(true, axis == axis_ans);
+
+  Quaternion d(x, y);
+  d.toAngleAxis(angle, axis);
+  EXPECT_DOUBLE_EQ(90.0, angle);
+  EXPECT_EQ(true, z == axis);
 }
 
 TEST(QuaternionTest, assignment_operator)

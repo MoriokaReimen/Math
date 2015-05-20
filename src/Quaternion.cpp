@@ -15,6 +15,14 @@ Quaternion::Quaternion(const Degree& angle, const Vector3& axis)
   return;
 }
 
+Quaternion::Quaternion(const Vector3& a, const Vector3& b)
+{
+  auto angle = getAngle(a, b);
+  auto axis = getNormal(a, b);
+  this->fromAngleAxis(angle, axis);
+  return;
+}
+
 void Quaternion::set(const double& w, const double& x,
   const double& y, const double& z)
 {
@@ -52,6 +60,14 @@ void Quaternion::fromAngleAxis(const Degree& angle, const Vector3& axis)
     this->y = unit_axis.y * s;
     this->z = unit_axis.z * s;
     return;
+}
+
+void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
+{
+  auto angle = getAngle(a, b);
+  auto axis = getNormal(a, b);
+  this->fromAngleAxis(angle, axis);
+  return;
 }
 
 double Quaternion::getNorm() const

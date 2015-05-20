@@ -16,11 +16,13 @@ namespace Math {
       Quaternion(const double& w, const double& x,
          const double& y, const double& z);
       Quaternion(const Degree& angle, const Vector3& axis);
+      Quaternion(const Vector3& a, const Vector3& b);
       virtual ~Quaternion() = default;
       void set(const double& w, const double& x,
          const double& y, const double& z);
       void toAngleAxis(Degree& angle, Vector3& axis);
       void fromAngleAxis(const Degree& angle, const Vector3& axis);
+      void fromVectors(const Vector3& a, const Vector3& b);
       double getNorm() const;
       Quaternion operator+=(const Quaternion& rhs);
       Quaternion operator-=(const Quaternion& rhs);
