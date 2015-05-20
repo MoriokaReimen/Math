@@ -47,12 +47,12 @@ Degree operator-(const Degree& lhs, const Degree& rhs)
 
 bool operator==(const Degree& lhs, const Degree& rhs)
 {
-	return bool{lhs.val == rhs.val};
+	return std::islessgreater(lhs.val, rhs.val);
 }
 
 bool operator!=(const Degree& lhs, const Degree& rhs)
 {
-	return bool{lhs.val != rhs.val};
+	return ! std::islessgreater(lhs.val, rhs.val);
 }
 
 bool operator>(const Degree& lhs, const Degree& rhs)
