@@ -15,7 +15,10 @@ namespace Math {
       Quaternion() = default;
       Quaternion(const double& w, const double& x,
          const double& y, const double& z);
+      Quaternion(const Degree& angle, const Vector3& axis);
       virtual ~Quaternion() = default;
+      void set(const double& w, const double& x,
+         const double& y, const double& z);
       void toAngleAxis(Degree& angle, Vector3& axis);
       void fromAngleAxis(const Degree& angle, const Vector3& axis);
       double getNorm() const;

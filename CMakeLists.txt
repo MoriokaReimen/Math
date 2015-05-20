@@ -14,8 +14,8 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 # math Library
 add_library(math STATIC
 src/Degree.cpp include/Degree.hpp
-src/Vector3.cpp include/Vector3.hpp 
-src/Quaternion.cpp include/Quaternion.hpp 
+src/Vector3.cpp include/Vector3.hpp
+src/Quaternion.cpp include/Quaternion.hpp
 )
 
 # test codes
@@ -23,6 +23,7 @@ enable_testing()
 add_executable(math_test
     test/TestDegree.cpp
     test/TestVector3.cpp
+    test/TestQuaternion.cpp
 )
 target_link_libraries(math_test math gtest gtest_main pthread)
 add_test(math_test ./bin/math_test)

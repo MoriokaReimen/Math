@@ -9,6 +9,23 @@ Quaternion::Quaternion(const double& w, const double& x,
     return;
 }
 
+Quaternion::Quaternion(const Degree& angle, const Vector3& axis)
+{
+  this->fromAngleAxis(angle, axis);
+  return;
+}
+
+void Quaternion::set(const double& w, const double& x,
+  const double& y, const double& z)
+{
+  this->w = w;
+  this->x = x;
+  this->y = y;
+  this->z = z;
+
+  return;
+}
+
 void Quaternion::toAngleAxis(Degree& angle, Vector3& axis)
 {
     angle.fromRadian(2.0 * std::acos(this->w));
@@ -28,11 +45,12 @@ void Quaternion::toAngleAxis(Degree& angle, Vector3& axis)
 
 void Quaternion::fromAngleAxis(const Degree& angle, const Vector3& axis)
 {
-    double s = Math::sin(angle);
-    this->w = Math::cos(angle);
-    this->x = axis.x / s;
-    this->y = axis.y / s;
-    this->z = axis.z / s;
+    auto unit_axis = normalize(axis);
+    double s = Math::sin(scale(angle, 0.5));
+    this->w = Math::cos(scale(angle, 0.5));
+    this->x = unit_axis.x * s;
+    this->y = unit_axis.y * s;
+    this->z = unit_axis.z * s;
     return;
 }
 
@@ -67,25 +85,29 @@ Quaternion Quaternion::operator-=(const Quaternion& rhs)
 
 Quaternion Quaternion::operator*=(const Quaternion& rhs)
 {
-  this->w = (this->w * rhs.w)
+  double x, y, z, w;
+
+  w = (this->w * rhs.w)
     -(this->x * rhs.x)
     -(this->y * rhs.y)
     -(this->z * rhs.z);
 
-  this->x = (this->w * rhs.x)
+  x = (this->w * rhs.x)
     +(this->x * rhs.w)
-    +(this->y * rhs.z)
-    -(this->z * rhs.y);
+    -(this->y * rhs.z)
+    +(this->z * rhs.y);
 
-  this->y = (this->w * rhs.y)
-    -(this->x * rhs.z)
+  y = (this->w * rhs.y)
+    +(this->x * rhs.z)
     +(this->y * rhs.w)
-    +(this->z * rhs.x);
+    -(this->z * rhs.x);
 
-  this->z = (this->w * rhs.z)
-    +(this->x * rhs.y)
-    -(this->y * rhs.x)
+  z = (this->w * rhs.z)
+    -(this->x * rhs.y)
+    +(this->y * rhs.x)
     +(this->z * rhs.w);
+
+  this->set(w, x, y, z);
 
   return *this;
 }
@@ -133,17 +155,17 @@ Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs)
 
   buf.x = (lhs.w * rhs.x)
     +(lhs.x * rhs.w)
-    +(lhs.y * rhs.z)
-    -(lhs.z * rhs.y);
+    -(lhs.y * rhs.z)
+    +(lhs.z * rhs.y);
 
   buf.y = (lhs.w * rhs.y)
-    -(lhs.x * rhs.z)
+    +(lhs.x * rhs.z)
     +(lhs.y * rhs.w)
-    +(lhs.z * rhs.x);
+    -(lhs.z * rhs.x);
 
   buf.z = (lhs.w * rhs.z)
-    +(lhs.x * rhs.y)
-    -(lhs.y * rhs.x)
+    -(lhs.x * rhs.y)
+    +(lhs.y * rhs.x)
     +(lhs.z * rhs.w);
 
   return buf;
