@@ -65,17 +65,17 @@ namespace Math {
 
   bool operator==(const Vector3& lhs, const Vector3& rhs)
   {
-    if(lhs.x != rhs.x) return false;
-    if(lhs.y != rhs.y) return false;
-    if(lhs.z != rhs.z) return false;
+    if(std::islessgreater(lhs.x, rhs.x)) return false;
+    if(std::islessgreater(lhs.y, rhs.y)) return false;
+    if(std::islessgreater(lhs.z, rhs.z)) return false;
     return true;
   }
 
   bool operator!=(const Vector3& lhs, const Vector3& rhs)
   {
-    if(lhs.x != rhs.x) return true;
-    if(lhs.y != rhs.y) return true;
-    if(lhs.z != rhs.z) return true;
+    if(std::islessgreater(lhs.x, rhs.x)) return true;
+    if(std::islessgreater(lhs.y, rhs.y)) return true;
+    if(std::islessgreater(lhs.z, rhs.z)) return true;
     return false;
   }
 

@@ -1,4 +1,0 @@
-test 6 0.000433167
-math_test 3 0
----
-math_test

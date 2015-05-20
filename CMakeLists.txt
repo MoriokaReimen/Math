@@ -21,6 +21,7 @@ src/Vector3.cpp include/Vector3.hpp
 enable_testing()
 add_executable(math_test
     test/TestDegree.cpp
+    test/TestVector3.cpp
 )
 target_link_libraries(math_test math gtest gtest_main pthread)
 add_test(math_test ./bin/math_test)
