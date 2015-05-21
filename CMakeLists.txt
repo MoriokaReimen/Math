@@ -27,14 +27,14 @@ ExternalProject_Add(
     INSTALL_COMMAND ""
 )
 ## Create a libgtest target to be used as a dependency by test programs
-#add_library(libgtest IMPORTED STATIC GLOBAL)
-#add_dependencies(libgtest gtest)
-## Set gtest properties
-#ExternalProject_Get_Property(gtest source_dir binary_dir)
-#set_target_properties(libgtest PROPERTIES
-#    "IMPORTED_LOCATION" "bin/libgtest.a"
-#    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
-#)
+add_library(libgtest IMPORTED STATIC GLOBAL)
+add_dependencies(libgtest gtest)
+# Set gtest properties
+ExternalProject_Get_Property(gtest source_dir binary_dir)
+set_target_properties(libgtest PROPERTIES
+    "IMPORTED_LOCATION" "bin/libgtest.a"
+    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+)
 ###############################################################################
 
 
@@ -48,9 +48,10 @@ src/Quaternion.cpp include/Quaternion.hpp
 # test codes
 enable_testing()
 add_executable(math_test
+    test/test_main.cpp
     test/TestDegree.cpp
     test/TestVector3.cpp
     test/TestQuaternion.cpp
 )
-target_link_libraries(math_test math gtest gtest_main pthread)
+target_link_libraries(math_test math gtest pthread)
 add_test(math_test ./bin/math_test)
