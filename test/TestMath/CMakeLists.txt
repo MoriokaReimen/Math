@@ -11,3 +11,5 @@ target_link_libraries(test_math
     libgtest_main
     pthread
 )
+
+add_test(test_math ${CMAKE_BINARY_DIR}/bin/test_math)
