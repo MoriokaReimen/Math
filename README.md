@@ -8,22 +8,20 @@ Simple and practical math library for 3d mathematics
 * Vector manipulation
 * Quaternion manipulation
 
-## Demo
-
-## VS.
-
 ## Requirement
 
-## Usage
+C++11 compiler like g++-4.9
 
-## Install
+## TODO
 
-## Contribution
+* need comment
+* refine directory structure
+* remove gtest notes
 
 ## Licence
 
-[MIT](https://github.com/tcnksm/tool/blob/master/LICENCE)
+you can use this code freely
 
 ## Author
 
-[MoriokaReimen](menschenjager.mark.neun@gmail.com)
+[MoriokaReimen](https://github.com/MoriokaReimen)
