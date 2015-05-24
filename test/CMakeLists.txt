@@ -24,6 +24,5 @@ set_target_properties(libgtest_main PROPERTIES
     "IMPORTED_LOCATION" "${binary_dir}/libgtest_main.a"
     "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
     )
-#include_directories("${source_dir}/include")
 
-add_subdirectory(TestMath)
+add_subdirectory(src)

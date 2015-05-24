@@ -8,7 +8,5 @@ Makefile
 *.cmake
 CMakeCache.txt
 CMakeFiles
-bin/math_test
 Testing/*
-
-
+bin/test_math
