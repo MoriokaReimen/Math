@@ -9,4 +9,4 @@ Makefile
 CMakeCache.txt
 CMakeFiles
 Testing/*
-bin/test_math
+./bin/test_math
