@@ -70,6 +70,26 @@ void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
   return;
 }
 
+void Quaternion::toRPY(Degree& roll, Degree& pitch, Degree& yaw)
+{
+    roll = std::atan2(2 * (this->w * this->x + this->y * this->z),
+            1-2*(this->x*this->x+this->y*this->y));
+
+    pitch = std::asin(2 * (this->w * this->y + this->z * this->x));
+
+    yaw = std::atan2(2 * (this->w * this->z + this->x * this->y),
+            1-2*(this->y*this->y+this->z*this->z));
+    return;
+}
+
+void Quaternion::fromRPY(const Degree& roll, const Degree& pitch, const Degree& yaw)
+{
+    static const Vector3 x_axis(1.0,0.0,0.0), y_axis(0.0, 1.0, 0.0), z_axis(0.0, 0.0, 1.0);
+    Quaternion qroll(roll, x_axis), qpitch(pitch, y_axis), qyaw(yaw, z_axis);
+    *this = qroll * qpitch * qyaw;
+    return;
+}
+
 double Quaternion::getNorm() const
 {
   double length = std::sqrt(
