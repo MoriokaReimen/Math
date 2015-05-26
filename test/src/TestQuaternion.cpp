@@ -52,6 +52,20 @@ TEST(QuaternionTest, member_function)
   d.toAngleAxis(angle, axis);
   EXPECT_DOUBLE_EQ(90.0, angle);
   EXPECT_EQ(true, z == axis);
+
+  Degree roll(30.0), pitch(15.0), yaw(20.0);
+  Quaternion rpy_a;
+  rpy_a.fromRPY(roll, pitch, yaw);
+  EXPECT_NEAR(0.937, rpy_a.w, 0.001);
+  EXPECT_NEAR(0.275, rpy_a.x, 0.001);
+  EXPECT_NEAR(0.0796, rpy_a.y, 0.001);
+  EXPECT_NEAR(0.200, rpy_a.z, 0.001);
+
+  Quaternion rpy_b(0.772, 0.514, 0.210, 0.310);
+  rpy_b.toRPY(roll, pitch, yaw);
+  EXPECT_NEAR(60.0, roll.val, 0.1);
+  EXPECT_NEAR(40.0, pitch.val, 0.1);
+  EXPECT_NEAR(20.0, yaw.val, 0.1);
 }
 
 TEST(QuaternionTest, assignment_operator)

@@ -72,13 +72,18 @@ void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
 
 void Quaternion::toRPY(Degree& roll, Degree& pitch, Degree& yaw)
 {
-    roll = std::atan2(2 * (this->w * this->x + this->y * this->z),
-            1-2*(this->x*this->x+this->y*this->y));
+    auto m13 = 2.0 * (this->w*this->y + this->x*this->z);
+    auto m23 = 2.0 * (this->y*this->z-this->w*this->x);
+    auto m33 = 1.0 - 2.0*(this->x*this->x+this->y*this->y);
+    auto m11 = 1.0 - 2.0 * (this->y*this->y+this->z*this->z);
+    auto m12 = 2.0 * (this->x*this->y-this->w*this->z);
 
-    pitch = std::asin(2 * (this->w * this->y + this->z * this->x));
+    roll.fromRadian(std::atan2(-m23, m33));
 
-    yaw = std::atan2(2 * (this->w * this->z + this->x * this->y),
-            1-2*(this->y*this->y+this->z*this->z));
+    pitch.fromRadian(std::atan2(m13, std::sqrt(1.0-m13*m13)));
+
+    yaw.fromRadian(std::atan2(-m12, m11));
+
     return;
 }
 
@@ -86,7 +91,7 @@ void Quaternion::fromRPY(const Degree& roll, const Degree& pitch, const Degree& 
 {
     static const Vector3 x_axis(1.0,0.0,0.0), y_axis(0.0, 1.0, 0.0), z_axis(0.0, 0.0, 1.0);
     Quaternion qroll(roll, x_axis), qpitch(pitch, y_axis), qyaw(yaw, z_axis);
-    *this = qroll * qpitch * qyaw;
+    *this = qyaw * qpitch * qroll;
     return;
 }
 
