@@ -1,19 +1,65 @@
+/*
+-----------------------------------------------------------------------------
+Filename:    Logger.cpp
+-----------------------------------------------------------------------------
+         @@
+       @@@@@@
+      @```@@@@
+     @`  `@@@@@@
+   @@`   `@@@@@@@@
+  @@`    `@@@@@@@@@           Tohoku University
+  @` `   `@@@@@@@@@       SPACE ROBOTICS LABORATORY
+  @`` ## `@@@@@@@@@    http://www.astro.mech.tohoku.ac.jp/
+  @` #..#`@@@@@@@@@        Planetary Robotics Group @` #..#`@@@@@@@@@
+  @` ### `@@@@@@@@@          Professor Kazuya Yoshida
+  @` ###``@@@@@@@@@      Associate Professor Keiji Nagatani
+   @### ``@@@@@@@@
+   ###  ` @@@@@@@
+  ###  @  @@@@@                 Creation Date:
+ ###    @@@@@                    Spring 2013
+ /-\     @@
+|   |      %%                      Authors:
+ \-/##    %%%%%                   Kei Nakata
+   #### %%%                 nakata@astro.mech.tohoku.ac.jp
+     ###%%       *
+      ##%%     *****
+       #%%      ***
+        %%     *   *
+         %%
+          %%%%%
+           %%%
+-----------------------------------------------------------------------------
+@brief class for wrapping angle
+-----------------------------------------------------------------------------
+*/
 #include "Degree.hpp"
 
 namespace Math
 {
 
+/*!
+ * @brief Constructor for Degree class
+ * @param[in] num angle in degree
+ */
 Degree::Degree(const double& num)
 {
 	this->val = num;
 	return;
 }
 
+/*!
+ * @brief convert degree to radian
+ * @return angle in radian
+ */
 double Degree::toRadian() const
 {
 	return this->val /180.0 * M_PI;
 }
 
+/*!
+ * @brief convert radian to degree
+ * @param[in] num angle in radian
+ */
 void Degree::fromRadian(const double& radian)
 {
 	this->val = radian / M_PI * 180.0;
@@ -75,6 +121,11 @@ bool operator>=(const Degree& lhs, const Degree& rhs)
 	return bool{lhs.val >= rhs.val};
 }
 
+/*!
+ * @brief scale degree
+ * @param[in] num 
+ * @return scaled degree
+ */
 Degree scale(const Degree& degree, const double& num)
 {
 	Degree buf(num * degree.val);

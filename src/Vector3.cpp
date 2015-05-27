@@ -1,12 +1,58 @@
+/*!
+-----------------------------------------------------------------------------
+@file    Vector3.cpp
+----------------------------------------------------------------------------
+         @@
+       @@@@@@
+      @```@@@@
+     @`  `@@@@@@
+   @@`   `@@@@@@@@
+  @@`    `@@@@@@@@@           Tohoku University
+  @` `   `@@@@@@@@@       SPACE ROBOTICS LABORATORY
+  @`` ## `@@@@@@@@@    http://www.astro.mech.tohoku.ac.jp/
+  @` #..#`@@@@@@@@@        Planetary Robotics Group
+  @` #..#`@@@@@@@@@
+  @` ### `@@@@@@@@@          Professor Kazuya Yoshida
+  @` ###``@@@@@@@@@      Associate Professor Keiji Nagatani
+   @### ``@@@@@@@@
+   ###  ` @@@@@@@
+  ###  @  @@@@@                 Creation Date:
+ ###    @@@@@               @date Dec. 29. 2014
+ /-\     @@
+|   |      %%                      Authors:
+ \-/##    %%%%%             @author Kei Nakata
+   #### %%%                  menschenjager.mark.neun@gmail.com
+     ###%%       *
+      ##%%     *****
+       #%%      ***
+        %%     *   *
+         %%
+          %%%%%
+           %%%
+-----------------------------------------------------------------------------
+@brief Vector manipulation class
+-----------------------------------------------------------------------------
+*/
 #include "Vector3.hpp"
 
 namespace Math {
+
+/*!
+ * @brief Constructor for Vector3 class
+ * @param[in] a x element of vector
+ * @param[in] b y element of vector
+ * @param[in] c z element of vector
+ */
   Vector3::Vector3(const double& a, const double& b, const double& c)
   : x(a), y(b), z(c)
   {
     return;
   }
 
+/*!
+ * @brief get norm of Vector
+ * @return norm of Vector
+ */
   double Vector3::getNorm() const
   {
     double len =
@@ -90,6 +136,11 @@ namespace Math {
     return false;
   }
 
+/*!
+ * @brief get normalized Vector
+ * @param[in] lhs input vector
+ * @return normalized vector
+ */
   Vector3 normalize(const Vector3& lhs)
   {
     Vector3 buf;
@@ -98,6 +149,12 @@ namespace Math {
     return buf;
   }
 
+/*!
+ * @brief dot product
+ * @param[in] lhs input vector
+ * @param[in] rhs input vector
+ * @return dot product of vector
+ */
   double dot(const Vector3& lhs, const Vector3& rhs)
   {
     double buf(
@@ -107,6 +164,12 @@ namespace Math {
     return buf;
   }
 
+/*!
+ * @brief cross product
+ * @param[in] lhs input vector
+ * @param[in] rhs input vector
+ * @return cross product of vector
+ */
   Vector3 cross(const Vector3& lhs, const Vector3& rhs)
   {
     Vector3 buf(
@@ -117,6 +180,12 @@ namespace Math {
     return buf;
   }
 
+/*!
+ * @brief get angle between two vectors
+ * @param[in] lhs input vector
+ * @param[in] rhs input vector
+ * @return angle between two vector
+ */
   Degree getAngle(const Vector3& lhs, const Vector3& rhs)
   {
     Degree angle;
@@ -126,6 +195,12 @@ namespace Math {
     return angle;
   }
 
+/*!
+ * @brief get normal vector of two vectors
+ * @param[in] lhs input vector
+ * @param[in] rhs input vector
+ * @return vector normal to two vectors
+ */
   Vector3 getNormal(const Vector3& lhs, const Vector3& rhs)
   {
     Vector3 normal = cross(lhs, rhs);
