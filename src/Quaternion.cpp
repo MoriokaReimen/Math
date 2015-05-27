@@ -1,7 +1,48 @@
+/*!
+-----------------------------------------------------------------------------
+@file    Quaternion.cpp
+----------------------------------------------------------------------------
+         @@
+       @@@@@@
+      @```@@@@
+     @`  `@@@@@@
+   @@`   `@@@@@@@@
+  @@`    `@@@@@@@@@           Tohoku University
+  @` `   `@@@@@@@@@       SPACE ROBOTICS LABORATORY
+  @`` ## `@@@@@@@@@    http://www.astro.mech.tohoku.ac.jp/
+  @` #..#`@@@@@@@@@        Planetary Robotics Group
+  @` #..#`@@@@@@@@@
+  @` ### `@@@@@@@@@          Professor Kazuya Yoshida
+  @` ###``@@@@@@@@@      Associate Professor Keiji Nagatani
+   @### ``@@@@@@@@
+   ###  ` @@@@@@@
+  ###  @  @@@@@                 Creation Date:
+ ###    @@@@@               @date Dec. 29. 2014
+ /-\     @@
+|   |      %%                      Authors:
+ \-/##    %%%%%             @author Kei Nakata
+   #### %%%                  menschenjager.mark.neun@gmail.com
+     ###%%       *
+      ##%%     *****
+       #%%      ***
+        %%     *   *
+         %%
+          %%%%%
+           %%%
+-----------------------------------------------------------------------------
+@brief Quaternion manipulation class
+-----------------------------------------------------------------------------
+*/
 #include "Quaternion.hpp"
-
 namespace Math {
 
+/*!
+ * @brief Constructor for Quaternion class
+ * @param[in] w x element of vector
+ * @param[in] x x element of vector
+ * @param[in] y y element of vector
+ * @param[in] z z element of vector
+ */
 Quaternion::Quaternion(const double& w, const double& x,
   const double& y, const double& z)
     : w(w), x(x), y(y), z(z)
@@ -9,12 +50,22 @@ Quaternion::Quaternion(const double& w, const double& x,
     return;
 }
 
+/*!
+ * @brief Constructor from axis angle and angle
+ * @param[in] angle angle of rotation
+ * @param[in] axis axis of rotation
+ */
 Quaternion::Quaternion(const Degree& angle, const Vector3& axis)
 {
   this->fromAngleAxis(angle, axis);
   return;
 }
 
+/*!
+ * @brief Constructor from axis angle and angle
+ * @param[in] angle angle of rotation
+ * @param[in] axis axis of rotation
+ */
 Quaternion::Quaternion(const Vector3& a, const Vector3& b)
 {
   auto angle = getAngle(a, b);
@@ -34,6 +85,11 @@ void Quaternion::set(const double& w, const double& x,
   return;
 }
 
+/*!
+ * @brief Convert quaternion to angle and axis
+ * @param[out] angle angle of rotation
+ * @param[out] axis axis of rotation
+ */
 void Quaternion::toAngleAxis(Degree& angle, Vector3& axis)
 {
     angle.fromRadian(2.0 * std::acos(this->w));
@@ -51,6 +107,11 @@ void Quaternion::toAngleAxis(Degree& angle, Vector3& axis)
     }
 }
 
+/*!
+ * @brief set quaternion from angle and axis
+ * @param[in] angle angle of rotation
+ * @param[in] axis axis of rotation
+ */
 void Quaternion::fromAngleAxis(const Degree& angle, const Vector3& axis)
 {
     auto unit_axis = normalize(axis);
@@ -62,6 +123,11 @@ void Quaternion::fromAngleAxis(const Degree& angle, const Vector3& axis)
     return;
 }
 
+/*!
+ * @brief set quaternion from two vectors
+ * @param[in] a input vector
+ * @param[in] b input vector
+ */
 void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
 {
   auto angle = getAngle(a, b);
@@ -70,6 +136,12 @@ void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
   return;
 }
 
+/*!
+ * @brief convert Quaternion to XYZ euler angle
+ * @param[out] roll roll angle
+ * @param[out] pitch pitch angle
+ * @param[out] yaw yaw angle
+ */
 void Quaternion::toRPY(Degree& roll, Degree& pitch, Degree& yaw)
 {
     auto m13 = 2.0 * (this->w*this->y + this->x*this->z);
@@ -87,6 +159,12 @@ void Quaternion::toRPY(Degree& roll, Degree& pitch, Degree& yaw)
     return;
 }
 
+/*!
+ * @brief set Quaternion from XYZ euler angle
+ * @param[in] roll roll angle
+ * @param[in] pitch pitch angle
+ * @param[in] yaw yaw angle
+ */
 void Quaternion::fromRPY(const Degree& roll, const Degree& pitch, const Degree& yaw)
 {
     static const Vector3 x_axis(1.0,0.0,0.0), y_axis(0.0, 1.0, 0.0), z_axis(0.0, 0.0, 1.0);
@@ -95,6 +173,10 @@ void Quaternion::fromRPY(const Degree& roll, const Degree& pitch, const Degree& 
     return;
 }
 
+/*!
+ * @brief get norm of quaternion
+ * @return norm of quaternion
+ */
 double Quaternion::getNorm() const
 {
   double length = std::sqrt(
@@ -153,6 +235,12 @@ Quaternion Quaternion::operator*=(const Quaternion& rhs)
   return *this;
 }
 
+/*!
+ * @brief scale quaternion
+ * @param[in] quat input quaternion
+ * @param[in] num factor for scaling
+ * @return scaled quaternion
+ */
 Quaternion scale(const Quaternion& quat, const double& num)
 {
   Quaternion buf(quat.w * num, quat.x * num,
@@ -161,6 +249,11 @@ Quaternion scale(const Quaternion& quat, const double& num)
   return buf;
 }
 
+/*!
+ * @brief normalize quaternion
+ * @param[in] quat input quaternion
+ * @return normalized quaternion
+ */
 Quaternion normalize(const Quaternion& quat)
 {
   Quaternion buf;
@@ -229,14 +322,4 @@ bool operator!=(const Quaternion& lhs, const Quaternion& rhs)
     if(std::islessgreater(lhs.z, rhs.z)) return true;
     return false;
 }
-
-/* implement someday
-void toMat(GLfloat* mat)
-{
-  mat[0] = w * w + x * x - y * y - z * z;
-  mat[1] = 2 * (x * y + w * z);
-  mat[2] = 2 * (x * z - w * y);
-  mat[3] = 2 * (x * z - w * y);
-}
-*/
 };
