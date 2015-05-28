@@ -12,3 +12,4 @@ Testing/*
 ./bin/
 ./bin/*
 /bin
+doc/
