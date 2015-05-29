@@ -24,3 +24,11 @@ target_include_directories(math PUBLIC
 
 enable_testing()
 add_subdirectory(test)
+
+find_package(Doxygen)
+if(DOXYGEN_FOUND)
+    add_custom_target(doc
+        COMMAND doxygen Doxyfile
+        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+        COMMENT "Generation documentation with doxygen" VERBATIM)
+endif(DOXYGEN_FOUND)
