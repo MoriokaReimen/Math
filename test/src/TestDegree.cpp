@@ -68,15 +68,26 @@ TEST(DegreeTest, comp_operator)
   EXPECT_EQ(true, degree_a <= degree_b);
 }
 
-TEST(DegreeTest, function)
+TEST(DegreeTest, cos)
 {
-  Degree degree_a(0.0);
-  Degree degree_b(90.0);
-  Degree degree_c(180.0);
-  Degree degree_d(45.0);
+  Degree a(0.0);
+  EXPECT_DOUBLE_EQ(1.0, cos(a));
+}
 
-  EXPECT_EQ(degree_c, scale(2.0, degree_b));
-  EXPECT_DOUBLE_EQ(1.0, sin(degree_b));
-  EXPECT_DOUBLE_EQ(1.0, cos(degree_a));
-  EXPECT_DOUBLE_EQ(1.0, tan(degree_d));
+TEST(DegreeTest, sin)
+{
+  Degree a(90.0);
+  EXPECT_DOUBLE_EQ(1.0, sin(a));
+}
+
+TEST(DegreeTest, tan)
+{
+  Degree a(45.0);
+  EXPECT_DOUBLE_EQ(1.0, tan(a));
+}
+
+TEST(DegreeTest, scale)
+{
+  Degree a(90.0), b(180.0);
+  EXPECT_EQ(b, scale(2.0, a));
 }

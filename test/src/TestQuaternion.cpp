@@ -20,49 +20,67 @@ TEST(QuaternionTest, construct)
   EXPECT_DOUBLE_EQ(4.0, b.z);
 }
 
-TEST(QuaternionTest, member_function)
+TEST(QuaternionTest, getNorm)
 {
   Quaternion a(1.0, 1.0, 1.0, 1.0);
+  EXPECT_DOUBLE_EQ(2.0, a.getNorm());
+}
 
-  Quaternion b(0.5, 0.5, 0.5, 0.5);
+TEST(QuaternionTest, from_angle_axis)
+{
   Degree angle(120.0);
   Vector3 axis(1.0, 1.0, 1.0);
+  Quaternion a(angle, axis);
 
-  Vector3 x(1.0, 0.0, 0.0);
-  Vector3 y(0.0, 1.0, 0.0);
-  Vector3 z(0.0, 0.0, 1.0);
-  Degree ninety(90.0);
+  EXPECT_DOUBLE_EQ(0.5, a.w);
+  EXPECT_DOUBLE_EQ(0.5, a.x);
+  EXPECT_DOUBLE_EQ(0.5, a.y);
+  EXPECT_DOUBLE_EQ(0.5, a.z);
+}
 
-  EXPECT_DOUBLE_EQ(2.0, a.getNorm());
-
-  Quaternion c(angle, axis);
-  EXPECT_DOUBLE_EQ(0.5, c.w);
-  EXPECT_DOUBLE_EQ(0.5, c.x);
-  EXPECT_DOUBLE_EQ(0.5, c.y);
-  EXPECT_DOUBLE_EQ(0.5, c.z);
-
-  b.toAngleAxis(angle, axis);
+TEST(QuaternionTest, to_angle_axis)
+{
+  Degree angle;
+  Vector3 axis;
+  Quaternion a(0.5, 0.5, 0.5, 0.5);
+  a.toAngleAxis(angle, axis);
   axis = normalize(axis);
   Vector3 axis_ans(1.0, 1.0, 1.0);
   axis_ans = normalize(axis_ans);
   EXPECT_DOUBLE_EQ(120.0, angle.val);
   EXPECT_EQ(true, axis == axis_ans);
+}
 
-  Quaternion d(x, y);
-  d.toAngleAxis(angle, axis);
+TEST(QuaternionTest, from_two_vectors)
+{
+  Degree angle;
+  Vector3 axis;
+  Vector3 x(1.0, 0.0, 0.0);
+  Vector3 y(0.0, 1.0, 0.0);
+  Vector3 z(0.0, 0.0, 1.0);
+  Degree ninety(90.0);
+  Quaternion a(x, y);
+  a.toAngleAxis(angle, axis);
   EXPECT_DOUBLE_EQ(90.0, angle);
   EXPECT_EQ(true, z == axis);
+}
 
+TEST(QuaternionTest, from_RPY)
+{
   Degree roll(30.0), pitch(15.0), yaw(20.0);
-  Quaternion rpy_a;
-  rpy_a.fromRPY(roll, pitch, yaw);
-  EXPECT_NEAR(0.937, rpy_a.w, 0.001);
-  EXPECT_NEAR(0.275, rpy_a.x, 0.001);
-  EXPECT_NEAR(0.0796, rpy_a.y, 0.001);
-  EXPECT_NEAR(0.200, rpy_a.z, 0.001);
+  Quaternion a;
+  a.fromRPY(roll, pitch, yaw);
+  EXPECT_NEAR(0.937, a.w, 0.001);
+  EXPECT_NEAR(0.275, a.x, 0.001);
+  EXPECT_NEAR(0.0796, a.y, 0.001);
+  EXPECT_NEAR(0.200, a.z, 0.001);
+}
 
-  Quaternion rpy_b(0.772, 0.514, 0.210, 0.310);
-  rpy_b.toRPY(roll, pitch, yaw);
+TEST(QuaternionTest, to_RPY)
+{
+  Degree roll, pitch, yaw;
+  Quaternion a(0.772, 0.514, 0.210, 0.310);
+  a.toRPY(roll, pitch, yaw);
   EXPECT_NEAR(60.0, roll.val, 0.1);
   EXPECT_NEAR(40.0, pitch.val, 0.1);
   EXPECT_NEAR(20.0, yaw.val, 0.1);
@@ -133,13 +151,17 @@ TEST(QuaternionTest, comp_operator)
   EXPECT_EQ(false, a != b);
 }
 
-TEST(QuaternionTest, function)
+TEST(QuaternionTest, scale)
 {
   Quaternion a(1.0, 1.0, 1.0, 1.0);
   Quaternion b(2.0, 2.0, 2.0, 2.0);
+  EXPECT_EQ(true, b == scale(a, 2));
+}
 
-  auto buffa = scale(a, 2);
-  EXPECT_EQ(true, buffa == b);
+TEST(QuaternionTest, normalize)
+{
+  Quaternion a(1.0, 1.0, 1.0, 1.0);
+  Quaternion b(2.0, 2.0, 2.0, 2.0);
 
   EXPECT_EQ(true, normalize(a) == normalize(b));
 }

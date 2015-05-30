@@ -18,7 +18,7 @@ TEST(Vector3Test, construct)
   EXPECT_DOUBLE_EQ(3.0, vector3_b.z);
 }
 
-TEST(Vector3Test, member_function)
+TEST(Vector3Test, getNrom)
 {
   Vector3 vector3_c(1.0, 2.0, 3.0);
   EXPECT_DOUBLE_EQ(std::sqrt(14), vector3_c.getNorm());
@@ -91,33 +91,48 @@ TEST(Vector3Test, comp_operator)
   EXPECT_EQ(false, vector3_a != vector3_b);
 }
 
-TEST(Vector3Test, function)
+TEST(Vector3Test, normalize)
 {
-  Vector3 vector3_a(1.0, 1.0, 1.0);
-  Vector3 vector3_b(2.0, 2.0, 2.0);
-  Vector3 vector3_c(1.0, 2.0, 3.0);
-  Vector3 vector3_d(1.0, -2.0, 1.0);
-
-  Vector3 x(1.0, 0.0, 0.0);
-  Vector3 y(0.0, 1.0, 0.0);
-  Vector3 z(0.0, 0.0, 1.0);
-
-
-  auto buff = normalize(vector3_b);
-  Vector3 normal_b(
+  Vector3 a(2.0, 2.0, 2.0);
+  a = normalize(a);
+  Vector3 normal(
     1.0 / std::sqrt(3),
     1.0 / std::sqrt(3),
     1.0 / std::sqrt(3));
-  EXPECT_EQ(true, normal_b == buff);
+  EXPECT_EQ(true, a == normal);
+}
 
-  EXPECT_DOUBLE_EQ(6.0, dot(vector3_a, vector3_c));
+TEST(Vector3Test, dot)
+{
+  Vector3 a(1.0, 1.0, 1.0);
+  Vector3 b(1.0, 2.0, 3.0);
 
-  buff = cross(vector3_a, vector3_c);
-  EXPECT_EQ(true, vector3_d == buff);
+  EXPECT_DOUBLE_EQ(6.0, dot(a, b));
+}
+
+TEST(Vector3Test, cross)
+{
+  Vector3 a(1.0, 1.0, 1.0);
+  Vector3 b(1.0, 2.0, 3.0);
+  Vector3 c(1.0, -2.0, 1.0);
+  auto buff = cross(a, b);
+  EXPECT_EQ(true, c == buff);
+}
+
+TEST(Vector3Test, getAngle)
+{
+  Vector3 x(1.0, 0.0, 0.0);
+  Vector3 y(0.0, 1.0, 0.0);
 
   auto ninety = getAngle(x, y);
   EXPECT_DOUBLE_EQ(90.0, ninety.val);
+}
 
+TEST(Vector3Test, getNormal)
+{
+  Vector3 x(1.0, 0.0, 0.0);
+  Vector3 y(0.0, 1.0, 0.0);
+  Vector3 z(0.0, 0.0, 1.0);
   auto normal = getNormal(x, y);
   EXPECT_EQ(true, normal == z);
 }
