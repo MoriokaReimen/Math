@@ -43,8 +43,8 @@ namespace Math
  */
 Degree::Degree(const double& num)
 {
-	this->val = num;
-	return;
+    this->val = num;
+    return;
 }
 
 /*!
@@ -53,7 +53,7 @@ Degree::Degree(const double& num)
  */
 double Degree::toRadian() const
 {
-	return this->val /180.0 * M_PI;
+    return this->val /180.0 * M_PI;
 }
 
 /*!
@@ -62,88 +62,88 @@ double Degree::toRadian() const
  */
 void Degree::fromRadian(const double& radian)
 {
-	this->val = radian / M_PI * 180.0;
-	return;
+    this->val = radian / M_PI * 180.0;
+    return;
 }
 
 Degree& Degree::operator+=(const Degree& lhs)
 {
-	this->val += lhs.val;
-	return *this;
+    this->val += lhs.val;
+    return *this;
 }
 
 Degree& Degree::operator-=(const Degree& lhs)
 {
-	this->val -= lhs.val;
-	return *this;
+    this->val -= lhs.val;
+    return *this;
 }
 
 
 Degree operator+(const Degree& lhs, const Degree& rhs)
 {
-	Degree buf(lhs.val + rhs.val);
-	return buf;
+    Degree buf(lhs.val + rhs.val);
+    return buf;
 }
 
 Degree operator-(const Degree& lhs, const Degree& rhs)
 {
-	Degree buf(lhs.val - rhs.val);
-	return buf;
+    Degree buf(lhs.val - rhs.val);
+    return buf;
 }
 
 bool operator==(const Degree& lhs, const Degree& rhs)
 {
-	return !std::islessgreater(lhs.val, rhs.val);
+    return !std::islessgreater(lhs.val, rhs.val);
 }
 
 bool operator!=(const Degree& lhs, const Degree& rhs)
 {
-	return std::islessgreater(lhs.val, rhs.val);
+    return std::islessgreater(lhs.val, rhs.val);
 }
 
 bool operator>(const Degree& lhs, const Degree& rhs)
 {
-	return bool{lhs.val > rhs.val};
+    return bool {lhs.val > rhs.val};
 }
 
 bool operator<(const Degree& lhs, const Degree& rhs)
 {
-	return bool{lhs.val < rhs.val};
+    return bool {lhs.val < rhs.val};
 }
 
 bool operator<=(const Degree& lhs, const Degree& rhs)
 {
-	return bool{lhs.val <= rhs.val};
+    return bool {lhs.val <= rhs.val};
 }
 
 bool operator>=(const Degree& lhs, const Degree& rhs)
 {
-	return bool{lhs.val >= rhs.val};
+    return bool {lhs.val >= rhs.val};
 }
 
 /*!
  * @brief scale degree
- * @param[in] num 
+ * @param[in] num
  * @return scaled degree
  */
 Degree scale(const Degree& degree, const double& num)
 {
-	Degree buf(num * degree.val);
-	return buf;
+    Degree buf(num * degree.val);
+    return buf;
 }
 
 double sin(const Degree& degree)
 {
-	return std::sin(degree.toRadian());
+    return std::sin(degree.toRadian());
 }
 
 double cos(const Degree& degree)
 {
-	return std::cos(degree.toRadian());
+    return std::cos(degree.toRadian());
 }
 
 double tan(const Degree& degree)
 {
-	return std::tan(degree.toRadian());
+    return std::tan(degree.toRadian());
 }
 }

@@ -34,7 +34,8 @@
 -----------------------------------------------------------------------------
 */
 #include "Quaternion.hpp"
-namespace Math {
+namespace Math
+{
 
 /*!
  * @brief Constructor for Quaternion class
@@ -44,7 +45,7 @@ namespace Math {
  * @param[in] z z element of vector
  */
 Quaternion::Quaternion(const double& w, const double& x,
-  const double& y, const double& z)
+                       const double& y, const double& z)
     : w(w), x(x), y(y), z(z)
 {
     return;
@@ -57,8 +58,8 @@ Quaternion::Quaternion(const double& w, const double& x,
  */
 Quaternion::Quaternion(const Degree& angle, const Vector3& axis)
 {
-  this->fromAngleAxis(angle, axis);
-  return;
+    this->fromAngleAxis(angle, axis);
+    return;
 }
 
 /*!
@@ -68,21 +69,21 @@ Quaternion::Quaternion(const Degree& angle, const Vector3& axis)
  */
 Quaternion::Quaternion(const Vector3& a, const Vector3& b)
 {
-  auto angle = getAngle(a, b);
-  auto axis = getNormal(a, b);
-  this->fromAngleAxis(angle, axis);
-  return;
+    auto angle = getAngle(a, b);
+    auto axis = getNormal(a, b);
+    this->fromAngleAxis(angle, axis);
+    return;
 }
 
 void Quaternion::set(const double& w, const double& x,
-  const double& y, const double& z)
+                     const double& y, const double& z)
 {
-  this->w = w;
-  this->x = x;
-  this->y = y;
-  this->z = z;
+    this->w = w;
+    this->x = x;
+    this->y = y;
+    this->z = z;
 
-  return;
+    return;
 }
 
 /*!
@@ -130,10 +131,10 @@ void Quaternion::fromAngleAxis(const Degree& angle, const Vector3& axis)
  */
 void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
 {
-  auto angle = getAngle(a, b);
-  auto axis = getNormal(a, b);
-  this->fromAngleAxis(angle, axis);
-  return;
+    auto angle = getAngle(a, b);
+    auto axis = getNormal(a, b);
+    this->fromAngleAxis(angle, axis);
+    return;
 }
 
 /*!
@@ -179,60 +180,60 @@ void Quaternion::fromRPY(const Degree& roll, const Degree& pitch, const Degree& 
  */
 double Quaternion::getNorm() const
 {
-  double length = std::sqrt(
-    (this->w * this->w) +
-    (this->x * this->x) +
-    (this->y * this->y) +
-    (this->z * this->z)
-  );
-  return length;
+    double length = std::sqrt(
+                        (this->w * this->w) +
+                        (this->x * this->x) +
+                        (this->y * this->y) +
+                        (this->z * this->z)
+                    );
+    return length;
 }
 
 Quaternion Quaternion::operator+=(const Quaternion& rhs)
 {
-  this->w += rhs.w;
-  this->x += rhs.x;
-  this->y += rhs.y;
-  this->z += rhs.z;
-  return *this;
+    this->w += rhs.w;
+    this->x += rhs.x;
+    this->y += rhs.y;
+    this->z += rhs.z;
+    return *this;
 }
 
 Quaternion Quaternion::operator-=(const Quaternion& rhs)
 {
-  this->w -= rhs.w;
-  this->x -= rhs.x;
-  this->y -= rhs.y;
-  this->z -= rhs.z;
-  return *this;
+    this->w -= rhs.w;
+    this->x -= rhs.x;
+    this->y -= rhs.y;
+    this->z -= rhs.z;
+    return *this;
 }
 
 Quaternion Quaternion::operator*=(const Quaternion& rhs)
 {
-  double x, y, z, w;
+    double x, y, z, w;
 
-  w = (this->w * rhs.w)
-    -(this->x * rhs.x)
-    -(this->y * rhs.y)
-    -(this->z * rhs.z);
+    w = (this->w * rhs.w)
+        -(this->x * rhs.x)
+        -(this->y * rhs.y)
+        -(this->z * rhs.z);
 
-  x = (this->w * rhs.x)
-    +(this->x * rhs.w)
-    -(this->y * rhs.z)
-    +(this->z * rhs.y);
+    x = (this->w * rhs.x)
+        +(this->x * rhs.w)
+        -(this->y * rhs.z)
+        +(this->z * rhs.y);
 
-  y = (this->w * rhs.y)
-    +(this->x * rhs.z)
-    +(this->y * rhs.w)
-    -(this->z * rhs.x);
+    y = (this->w * rhs.y)
+        +(this->x * rhs.z)
+        +(this->y * rhs.w)
+        -(this->z * rhs.x);
 
-  z = (this->w * rhs.z)
-    -(this->x * rhs.y)
-    +(this->y * rhs.x)
-    +(this->z * rhs.w);
+    z = (this->w * rhs.z)
+        -(this->x * rhs.y)
+        +(this->y * rhs.x)
+        +(this->z * rhs.w);
 
-  this->set(w, x, y, z);
+    this->set(w, x, y, z);
 
-  return *this;
+    return *this;
 }
 
 /*!
@@ -243,10 +244,10 @@ Quaternion Quaternion::operator*=(const Quaternion& rhs)
  */
 Quaternion scale(const Quaternion& quat, const double& num)
 {
-  Quaternion buf(quat.w * num, quat.x * num,
-    quat.y * num, quat.z * num);
+    Quaternion buf(quat.w * num, quat.x * num,
+                   quat.y * num, quat.z * num);
 
-  return buf;
+    return buf;
 }
 
 /*!
@@ -256,53 +257,53 @@ Quaternion scale(const Quaternion& quat, const double& num)
  */
 Quaternion normalize(const Quaternion& quat)
 {
-  Quaternion buf;
-  if(quat.getNorm() != 0.0)
-    buf = scale(quat, 1.0 / quat.getNorm());
-  return buf;
+    Quaternion buf;
+    if(quat.getNorm() != 0.0)
+        buf = scale(quat, 1.0 / quat.getNorm());
+    return buf;
 }
 
 Quaternion operator+(const Quaternion& lhs, const Quaternion& rhs)
 {
-  Quaternion buf(lhs.w + rhs.w, lhs.x + rhs.x,
-  lhs.y + rhs.y, lhs.z + rhs.z);
+    Quaternion buf(lhs.w + rhs.w, lhs.x + rhs.x,
+                   lhs.y + rhs.y, lhs.z + rhs.z);
 
-  return buf;
+    return buf;
 }
 
 Quaternion operator-(const Quaternion& lhs, const Quaternion& rhs)
 {
-  Quaternion buf(lhs.w - rhs.w, lhs.x - rhs.x,
-  lhs.y - rhs.y, lhs.z - rhs.z);
+    Quaternion buf(lhs.w - rhs.w, lhs.x - rhs.x,
+                   lhs.y - rhs.y, lhs.z - rhs.z);
 
-  return buf;
+    return buf;
 }
 
 Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs)
 {
-  Quaternion buf;
+    Quaternion buf;
 
-  buf.w = (lhs.w * rhs.w)
-    -(lhs.x * rhs.x)
-    -(lhs.y * rhs.y)
-    -(lhs.z * rhs.z);
+    buf.w = (lhs.w * rhs.w)
+            -(lhs.x * rhs.x)
+            -(lhs.y * rhs.y)
+            -(lhs.z * rhs.z);
 
-  buf.x = (lhs.w * rhs.x)
-    +(lhs.x * rhs.w)
-    -(lhs.y * rhs.z)
-    +(lhs.z * rhs.y);
+    buf.x = (lhs.w * rhs.x)
+            +(lhs.x * rhs.w)
+            -(lhs.y * rhs.z)
+            +(lhs.z * rhs.y);
 
-  buf.y = (lhs.w * rhs.y)
-    +(lhs.x * rhs.z)
-    +(lhs.y * rhs.w)
-    -(lhs.z * rhs.x);
+    buf.y = (lhs.w * rhs.y)
+            +(lhs.x * rhs.z)
+            +(lhs.y * rhs.w)
+            -(lhs.z * rhs.x);
 
-  buf.z = (lhs.w * rhs.z)
-    -(lhs.x * rhs.y)
-    +(lhs.y * rhs.x)
-    +(lhs.z * rhs.w);
+    buf.z = (lhs.w * rhs.z)
+            -(lhs.x * rhs.y)
+            +(lhs.y * rhs.x)
+            +(lhs.z * rhs.w);
 
-  return buf;
+    return buf;
 }
 
 bool operator==(const Quaternion& lhs, const Quaternion& rhs)
