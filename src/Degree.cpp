@@ -34,7 +34,7 @@ Filename:    Logger.cpp
 */
 #include "Degree.hpp"
 
-namespace Math
+namespace Math3D
 {
 
 /*!

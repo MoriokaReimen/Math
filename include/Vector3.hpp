@@ -2,7 +2,7 @@
 #include <cmath>
 #include "Degree.hpp"
 
-namespace Math
+namespace Math3D
 {
 class Vector3
 {

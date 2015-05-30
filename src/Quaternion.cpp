@@ -34,7 +34,7 @@
 -----------------------------------------------------------------------------
 */
 #include "Quaternion.hpp"
-namespace Math
+namespace Math3D
 {
 
 /*!

@@ -35,7 +35,7 @@
 */
 #include "Vector3.hpp"
 
-namespace Math
+namespace Math3D
 {
 
 /*!

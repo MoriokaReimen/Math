@@ -3,7 +3,7 @@
 #include "Degree.hpp"
 #include <cmath>
 
-namespace Math
+namespace Math3D
 {
 class Quaternion
 {

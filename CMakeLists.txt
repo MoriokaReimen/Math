@@ -36,11 +36,11 @@ endif(DOXYGEN_FOUND)
 
 # cpack config
 install(TARGETS math3d_static
-    RUNTIME DESTINATION bin
-    LIBRARY DESTINATION lib
-    ARCHIVE DESTINATION lib)
+    RUNTIME DESTINATION "local/bin"
+    LIBRARY DESTINATION "local/lib"
+    ARCHIVE DESTINATION "local/lib")
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION include/Math3d
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION "local/include/Math3d"
     FILES_MATCHING PATTERN "*.hpp")
 
 set(CPACK_OUTPUT_FILE_PREFIX "packages")
