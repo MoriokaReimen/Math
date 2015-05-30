@@ -8,16 +8,16 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/lib")
 INCLUDE_DIRECTORIES("${CMAKE_CURRENT_BINARY_DIR}/include" "/usr/include/")
 
 
-project(math)
+project(Math3d)
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 # math Library
-add_library(math STATIC
+add_library(math3d_static STATIC
 src/Degree.cpp include/Degree.hpp
 src/Vector3.cpp include/Vector3.hpp
 src/Quaternion.cpp include/Quaternion.hpp
 )
 
-target_include_directories(math PUBLIC
+target_include_directories(math3d_static PUBLIC
     ${CMAKE_CURRENT_BINARY_DIR}/include
 )
 
@@ -33,6 +33,13 @@ if(DOXYGEN_FOUND)
         COMMENT "Generation documentation with doxygen" VERBATIM)
 endif(DOXYGEN_FOUND)
 
+install(TARGETS math3d_static
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib)
+
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION include/Math3d
+    FILES_MATCHING PATTERN "*.hpp")
 
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "MoriokaReimen")

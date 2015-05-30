@@ -6,7 +6,7 @@ add_executable(test_math
     TestDegree.cpp
 )
 target_link_libraries(test_math
-    math
+    math3d_static
     libgtest
     libgtest_main
     pthread
