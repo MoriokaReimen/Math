@@ -32,3 +32,8 @@ if(DOXYGEN_FOUND)
         WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
         COMMENT "Generation documentation with doxygen" VERBATIM)
 endif(DOXYGEN_FOUND)
+
+
+set(CPACK_GENERATOR "DEB")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "MoriokaReimen")
+include(CPack)
