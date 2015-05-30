@@ -22,7 +22,7 @@ public:
 };
 
 Degree operator+(const Degree& lhs, const Degree& rhs);
-Dgree operator-(const Degree& lhs, const Degree& rhs);
+Degree operator-(const Degree& lhs, const Degree& rhs);
 
 bool operator==(const Degree& lhs, const Degree& rhs);
 bool operator!=(const Degree& lhs, const Degree& rhs);

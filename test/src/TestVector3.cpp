@@ -2,7 +2,7 @@
 #include <cmath>
 
 #include <gtest/gtest.h>
-using namespace Math;
+using namespace Math3D;
 
 TEST(Vector3Test, construct)
 {

@@ -116,8 +116,8 @@ void Quaternion::toAngleAxis(Degree& angle, Vector3& axis)
 void Quaternion::fromAngleAxis(const Degree& angle, const Vector3& axis)
 {
     auto unit_axis = normalize(axis);
-    double s = Math::sin(scale(angle, 0.5));
-    this->w = Math::cos(scale(angle, 0.5));
+    double s = Math3D::sin(scale(angle, 0.5));
+    this->w = Math3D::cos(scale(angle, 0.5));
     this->x = unit_axis.x * s;
     this->y = unit_axis.y * s;
     this->z = unit_axis.z * s;

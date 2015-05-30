@@ -4,7 +4,7 @@
 #define _USE_MATH_DEFINES
 
 #include <gtest/gtest.h>
-using namespace Math;
+using namespace Math3D;
 
 TEST(DegreeTest, construct)
 {
