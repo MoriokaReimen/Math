@@ -25,6 +25,7 @@ target_include_directories(math3d_static PUBLIC
 enable_testing()
 add_subdirectory(test)
 
+# doxygen config
 find_package(Doxygen)
 if(DOXYGEN_FOUND)
     add_custom_target(doc
@@ -33,6 +34,7 @@ if(DOXYGEN_FOUND)
         COMMENT "Generation documentation with doxygen" VERBATIM)
 endif(DOXYGEN_FOUND)
 
+# cpack config
 install(TARGETS math3d_static
     RUNTIME DESTINATION bin
     LIBRARY DESTINATION lib
@@ -41,6 +43,7 @@ install(TARGETS math3d_static
 install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION include/Math3d
     FILES_MATCHING PATTERN "*.hpp")
 
+set(CPACK_OUTPUT_FILE_PREFIX "packages")
 set(CPACK_GENERATOR "DEB")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "MoriokaReimen")
 include(CPack)

@@ -13,3 +13,6 @@ Testing/*
 ./bin/*
 /bin
 doc/
+packages/
+install_manifest.txt
+_CPack_Packages/
