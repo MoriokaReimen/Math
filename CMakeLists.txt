@@ -40,7 +40,7 @@ install(TARGETS math3d_static
     LIBRARY DESTINATION "local/lib"
     ARCHIVE DESTINATION "local/lib")
 
-install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION "local/include/Math3d"
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/include/ DESTINATION "local/include/Math3D"
     FILES_MATCHING PATTERN "*.hpp")
 
 set(CPACK_OUTPUT_FILE_PREFIX "packages")
