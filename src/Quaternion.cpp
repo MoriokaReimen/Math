@@ -91,7 +91,7 @@ void Quaternion::set(const double& w, const double& x,
  * @param[out] angle angle of rotation
  * @param[out] axis axis of rotation
  */
-void Quaternion::toAngleAxis(Degree& angle, Vector3& axis)
+void Quaternion::toAngleAxis(Degree& angle, Vector3& axis) const
 {
     angle.fromRadian(2.0 * std::acos(this->w));
     double s = 1.0 - this->w * this->w;
@@ -143,7 +143,7 @@ void Quaternion::fromVectors(const Vector3& a, const Vector3& b)
  * @param[out] pitch pitch angle
  * @param[out] yaw yaw angle
  */
-void Quaternion::toRPY(Degree& roll, Degree& pitch, Degree& yaw)
+void Quaternion::toRPY(Degree& roll, Degree& pitch, Degree& yaw) const
 {
     auto m13 = 2.0 * (this->w*this->y + this->x*this->z);
     auto m23 = 2.0 * (this->y*this->z-this->w*this->x);

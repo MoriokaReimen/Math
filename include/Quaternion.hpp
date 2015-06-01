@@ -21,10 +21,10 @@ public:
     virtual ~Quaternion() = default;
     void set(const double& w, const double& x,
              const double& y, const double& z);
-    void toAngleAxis(Degree& angle, Vector3& axis);
+    void toAngleAxis(Degree& angle, Vector3& axis) const;
     void fromAngleAxis(const Degree& angle, const Vector3& axis);
     void fromVectors(const Vector3& a, const Vector3& b);
-    void toRPY(Degree& roll, Degree& pitch, Degree& yaw);
+    void toRPY(Degree& roll, Degree& pitch, Degree& yaw) const;
     void fromRPY(const Degree& roll, const Degree& pitch, const Degree& yaw);
     double getNorm() const;
     Quaternion operator+=(const Quaternion& rhs);

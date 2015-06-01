@@ -12,9 +12,10 @@ project(Math3D)
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 # math Library
 add_library(math3d_static STATIC
-src/Degree.cpp include/Degree.hpp
-src/Vector3.cpp include/Vector3.hpp
-src/Quaternion.cpp include/Quaternion.hpp
+src/Degree.cpp
+src/Vector3.cpp
+src/Quaternion.cpp
+src/RotateFunc.cpp
 )
 
 target_include_directories(math3d_static PUBLIC
