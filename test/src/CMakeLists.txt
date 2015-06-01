@@ -4,6 +4,7 @@ add_executable(test_math
     TestQuaternion.cpp
     TestVector3.cpp
     TestDegree.cpp
+    TestRotateFunc.cpp
 )
 target_link_libraries(test_math
     math3d_static
