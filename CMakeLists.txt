@@ -3,7 +3,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "lib")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "lib")
 
-include_directories(include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 
 project(Math3D)
