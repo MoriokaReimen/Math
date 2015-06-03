@@ -18,11 +18,6 @@ src/Quaternion.cpp
 src/RotateFunc.cpp
 )
 
-target_include_directories(math3d_static PUBLIC
-    ${CMAKE_CURRENT_BINARY_DIR}/include
-)
-
-
 enable_testing()
 add_subdirectory(test)
 
