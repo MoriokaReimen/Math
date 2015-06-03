@@ -6,7 +6,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "lib")
 
 
 project(Math3D)
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include include)
+include_directories(include)
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 # math Library
 add_library(math3d_static STATIC
