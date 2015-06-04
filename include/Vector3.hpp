@@ -12,6 +12,7 @@ public:
     double z {0.0};
     Vector3() = default;
     Vector3(const double& a, const double& b, const double& c);
+    void set(const double& a, const double& b, const double& c);
     double getNorm() const;
     Vector3 operator+=(const Vector3& rhs);
     Vector3 operator-=(const Vector3& rhs);

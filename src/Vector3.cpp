@@ -50,6 +50,13 @@ Vector3::Vector3(const double& a, const double& b, const double& c)
     return;
 }
 
+void Vector3::set(const double& a, const double& b, const double& c)
+{
+  this->x = a;
+  this->y = b;
+  this->z = c;
+  return;
+}
 /*!
  * @brief get norm of Vector
  * @return norm of Vector
