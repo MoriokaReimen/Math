@@ -1,14 +1,12 @@
 cmake_minimum_required(VERSION 2.8)
-add_subdirectory(include)
-add_subdirectory(src)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/bin")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "lib")
 
-INCLUDE_DIRECTORIES(${CMAKE_CURRENT_LIST_DIR}/include)
 
 
 project(Math3D)
+include_directories(include)
 set(CMAKE_CXX_FLAGS "-std=c++11 -Wall -fPIC")
 # math Library
 add_library(math3d_static STATIC
@@ -26,19 +24,18 @@ find_package(Doxygen)
 if(DOXYGEN_FOUND)
     add_custom_target(doc
         COMMAND doxygen Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_LIST_DIR}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_LIST__DIR}
         COMMENT "Generation documentation with doxygen" VERBATIM)
 endif(DOXYGEN_FOUND)
 
 # cpack config
-set(CMAKE_INSTALL_PREFIX local)
 install(TARGETS math3d_static
-  RUNTIME DESTINATION "${CMAKE_INSTALL_PREFIX}/bin"
-  LIBRARY DESTINATION "${CMAKE_INSTALL_PREFIX}/lib"
-  ARCHIVE DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+  RUNTIME DESTINATION "bin"
+  LIBRARY DESTINATION "lib"
+  ARCHIVE DESTINATION "lib")
 
-install(DIRECTORY ${CMAKE_CURRENT_LIST_DIR}/include/
-  DESTINATION "${CMAKE_INSTALL_PREFIX}/include/Math3D"
+install(DIRECTORY include/
+  DESTINATION "include/Math3D"
   FILES_MATCHING PATTERN "*.hpp")
 
 set(CPACK_OUTPUT_FILE_PREFIX "packages")
